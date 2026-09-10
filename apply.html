@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Job Application Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 750px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 35px;
+        border-radius: 14px;
+        box-shadow: 0 4px 25px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #222;
+    }
+
+    .job-header-card {
+        background: #f7f9fc;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        border-left: 4px solid #0077ff;
+        text-align: center;
+    }
+    .job-header-card h3 {
+        margin: 0;
+        color: #0077ff;
+        font-size: 22px;
+    }
+    .job-header-card p {
+        margin: 5px 0 0 0;
+        color: #666;
+        font-size: 14px;
+    }
+
+    #status-message {
+        display: none;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 15px;
+        display: block;
+        color: #333;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    input[type="file"] {
+        padding: 6px;
+    }
+
+    .phone-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .phone-group select {
+        width: 35%;
+    }
+
+    .phone-group input {
+        width: 65%;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        background: #0077ff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        margin-top: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #005fcc;
+    }
+
+    button:disabled {
+        background: #a0c4ff;
+        cursor: not-allowed;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Job Application Form</h2>
+
+    <!-- Dynamic Display Area for Selected Position -->
+    <div class="job-header-card">
+        <h3 id="display-job-title">Loading Position Details...</h3>
+        <p id="display-job-id"></p>
+    </div>
+
+    <div id="status-message"></div>
+
+    <form id="applicationForm" enctype="multipart/form-data">
+
+        <!-- 🔒 Hidden inputs -->
+        <input type="hidden" id="hidden_job_id" name="job_id" value="">
+        <input type="hidden" id="hidden_job_title" name="job_title" value="">
+        <input type="hidden" id="hidden_job_description" name="job_description" value="">
+        <input type="hidden" id="hidden_salary_range" name="salary_range" value="">
+        <input type="hidden" id="hidden_earliest_start_date" name="earliest_start_date" value="">
+	<input type="hidden" id="hidden_interviewers_emails" name="interviewers_emails" value="">
+
+        <label>Email *</label>
+        <input type="email" name="email" required />    
+
+        <label>First Name *</label>
+        <input type="text" name="first_name" required>
+
+        <label>Last Name *</label>
+        <input type="text" name="last_name" required>
+
+        <label>Street *</label>
+        <input type="text" name="street" required>
+
+        <label>City *</label>
+        <input type="text" name="city" required>
+
+        <label>Postal Code *</label>
+        <input type="text" name="postal_code" required>
+
+        <label>Country *</label>
+        <select name="country" required>
+            <option value="">Select your country</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Spain</option>
+            <option>Italy</option>
+            <option>Netherlands</option>
+            <option>Belgium</option>
+            <option>Sweden</option>
+            <option>Norway</option>
+            <option>Denmark</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Australia</option>
+            <option>Brazil</option>
+            <option>Mexico</option>
+            <option>Japan</option>
+            <option>China</option>
+            <option>India</option>
+            <option>Saudi Arabia</option>
+            <option>UAE</option>
+            <option>Qatar</option>
+            <option>Egypt</option>
+            <option>Lebanon</option>
+            <option>Jordan</option>
+            <option>Turkey</option>
+        </select>
+
+        <label>Expected Salary (€) *</label>
+        <input type="number" name="expected_salary" required>
+
+        <label>Available Start Date *</label>
+        <input type="date" name="start_date" required>
+
+        <label>Phone Number (Optional)</label>
+        <div class="phone-group">
+            <select name="phone_country_code">
+                <option value="">Country Code</option>
+                <option value="+49">Germany (+49)</option>
+                <option value="+33">France (+33)</option>
+                <option value="+34">Spain (+34)</option>
+                <option value="+39">Italy (+39)</option>
+                <option value="+44">UK (+44)</option>
+                <option value="+1">USA/Canada (+1)</option>
+                <option value="+61">Australia (+61)</option>
+                <option value="+81">Japan (+81)</option>
+                <option value="+86">China (+86)</option>
+                <option value="+91">India (+91)</option>
+                <option value="+966">Saudi Arabia (+966)</option>
+                <option value="+971">UAE (+971)</option>
+                <option value="+974">Qatar (+974)</option>
+                <option value="+20">Egypt (+20)</option>
+                <option value="+961">Lebanon (+961)</option>
+                <option value="+962">Jordan (+962)</option>
+                <option value="+90">Turkey (+90)</option>
+            </select>
+
+            <input type="text" name="phone_number" placeholder="Phone number">
+        </div>
+
+        <label>Upload CV (PDF only) *</label>
+        <input type="file" name="cv_file" accept="application/pdf" required>
+
+        <button type="submit" id="submitBtn">Submit Application</button>
+
+    </form>
+</div>
+
+<script>
+    const n8nGetJobsUrl = 'http://localhost:5678/webhook/get-all-jobs';
+    const n8nSubmitUrl = 'http://localhost:5678/webhook/submit-job-application';
+
+    async function loadAppliedJobDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentJobId = urlParams.get('job_id');
+
+        if (!currentJobId) {
+            document.getElementById('display-job-title').innerText = "No Position Selected";
+            return;
+        }
+
+        try {
+            const response = await fetch(n8nGetJobsUrl);
+            const jobs = await response.json();
+
+            const matchedJob = jobs.find(j => String(j.job_id) === String(currentJobId));
+
+            if (matchedJob) {
+                document.getElementById('display-job-title').innerText = "Applying for: " + matchedJob.job_title;
+                document.getElementById('display-job-id').innerText = "Job ID reference: " + matchedJob.job_id;
+
+                document.getElementById('hidden_job_id').value = matchedJob.job_id || '';
+                document.getElementById('hidden_job_title').value = matchedJob.job_title || '';
+                document.getElementById('hidden_job_description').value = matchedJob.job_description || '';
+                document.getElementById('hidden_salary_range').value = matchedJob.salary_range || '';
+                document.getElementById('hidden_earliest_start_date').value = matchedJob.earliest_start_date || '';
+		document.getElementById('hidden_interviewers_emails').value = matchedJob.interviewers_emails || matchedJob.interviewers || '';
+            } else {
+                document.getElementById('display-job-title').innerText = "Job Position Not Found";
+            }
+        } catch (error) {
+            console.error('Error loading job specifications:', error);
+            document.getElementById('display-job-title').innerText = "Error Loading Job Info";
+        }
+    }
+
+    document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+        e.preventDefault(); // منع إعادة تحميل الصفحة
+
+        const submitBtn = document.getElementById('submitBtn');
+        const msgDiv = document.getElementById('status-message');
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+        msgDiv.style.display = "none";
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch(n8nSubmitUrl, {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.message === "duplicate") {
+                msgDiv.style.display = "block";
+                msgDiv.style.backgroundColor = "#f8d7da";
+                msgDiv.style.color = "#721c24";
+                msgDiv.style.border = "1px solid #f5c6cb";
+                msgDiv.innerText = "⚠️ You have already submitted an application for this position using this email address.";
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit Application";
+            } else {
+                msgDiv.style.display = "block";
+                msgDiv.style.backgroundColor = "#d4edda";
+                msgDiv.style.color = "#155724";
+                msgDiv.style.border = "1px solid #c3e6cb";
+                msgDiv.innerText = "✅ Your application has been submitted successfully!";
+                this.reset();
+                submitBtn.innerText = "Submitted";
+            }
+        } catch (error) {
+            console.error('Error submitting application:', error);
+            msgDiv.style.display = "block";
+            msgDiv.style.backgroundColor = "#f8d7da";
+            msgDiv.style.color = "#721c24";
+            msgDiv.style.border = "1px solid #f5c6cb";
+            msgDiv.innerText = "An error occurred while submitting your application. Please try again later.";
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Application";
+        }
+    });
+
+    window.onload = loadAppliedJobDetails;
+</script>
+
+</body>
+</html>
